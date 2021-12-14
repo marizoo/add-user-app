@@ -61,6 +61,14 @@ const AddUser = ({onAddedData, onCloseTheForm}) => {
     const submitHandler = (ev) => {
         ev.preventDefault();
 
+        if(addName.trim().length === 0 || addAge.trim().length === 0) {
+            return;
+        }
+
+        if(addAge < 1){
+            return;
+        }
+
         const addedData = {
             name: addName,
             age: addAge,
@@ -84,7 +92,7 @@ const AddUser = ({onAddedData, onCloseTheForm}) => {
                 <Label htmlFor="username">Username</Label>
                 <Input id="username" required type="text" onChange={addNameHandler} value={addName}/>
                 <Label htmlFor="age">Age(Years)</Label>
-                <Input id="age" required type="number" max="99" onChange={addAgeHandler} value={addAge}/>
+                <Input id="age" required type="number" min="1" max="99" onChange={addAgeHandler} value={addAge}/>
                 <ButtonContainer>
                 <Button type="submit">Add User</Button>
                 <Button onClick={closeForm}>Cancel</Button>
