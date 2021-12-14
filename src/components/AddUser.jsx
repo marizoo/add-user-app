@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import styled from 'styled-components'
 // import ErrorModal from '../UI/ErrorModal'
 
@@ -47,6 +47,9 @@ border-radius: 10px;
 `
 
 const AddUser = ({onAddedData, onCloseTheForm}) => {
+
+    const nameInputRef = useRef();
+    const ageInputRef = useRef();
 
     const [addName, setAddName] = useState("")
     const [addAge, setAddAge] = useState("")
@@ -110,9 +113,23 @@ const AddUser = ({onAddedData, onCloseTheForm}) => {
 
             <Form onSubmit={submitHandler}>
                 <Label htmlFor="username">Username</Label>
-                <Input id="username" required type="text" onChange={addNameHandler} value={addName}/>
+                {/* <Input id="username" required type="text" onChange={addNameHandler} value={addName}/> */}
+                <Input 
+                id="username" 
+                required type="text" 
+                onChange={addNameHandler} 
+                value={addName}
+                ref={nameInputRef}
+                />
                 <Label htmlFor="age">Age(Years)</Label>
-                <Input id="age" required type="number" min="1" max="99" onChange={addAgeHandler} value={addAge}/>
+                {/* <Input id="age" required type="number" min="1" max="99" onChange={addAgeHandler} value={addAge}/> */}
+                <Input id="age" 
+                required type="number" 
+                min="1" max="99" 
+                onChange={addAgeHandler} 
+                value={addAge}
+                ref={ageInputRef}
+                />
                 <ButtonContainer>
                 <Button type="submit">Add User</Button>
                 <Button onClick={closeForm}>Cancel</Button>
