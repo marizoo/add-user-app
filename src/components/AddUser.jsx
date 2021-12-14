@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
+// import ErrorModal from '../UI/ErrorModal'
 
 const Container = styled.div`
 width: 60%;
@@ -49,6 +50,7 @@ const AddUser = ({onAddedData, onCloseTheForm}) => {
 
     const [addName, setAddName] = useState("")
     const [addAge, setAddAge] = useState("")
+    // const [error, setError] = useState()
 
     const addNameHandler = (ev) => {
         setAddName(ev.target.value)
@@ -62,10 +64,18 @@ const AddUser = ({onAddedData, onCloseTheForm}) => {
         ev.preventDefault();
 
         if(addName.trim().length === 0 || addAge.trim().length === 0) {
+            // setError({
+            //     title: 'Invalid input',
+            //     message: 'Please enter a valid name and age (non-empty values).'
+            // })
             return;
         }
 
-        if(addAge < 1){
+        if(+addAge < 1){
+            // setError({
+            //     title: 'Invalid age',
+            //     message: 'Please enter a valid age (> 0).'
+            // })
             return;
         }
 
@@ -86,8 +96,18 @@ const AddUser = ({onAddedData, onCloseTheForm}) => {
         onCloseTheForm(ev);
     }
 
+    // const errorHandler = {
+    //     setError(null);
+    // }
+
     return (
         <Container>
+            {/* {error && <ErrorModal 
+            title={error.title} 
+            message={error.message} 
+            onCloseErrorMsg={errorHandler}
+            />} */}
+
             <Form onSubmit={submitHandler}>
                 <Label htmlFor="username">Username</Label>
                 <Input id="username" required type="text" onChange={addNameHandler} value={addName}/>

@@ -1,9 +1,14 @@
 import React from 'react'
+// import classes from '../ButtonStyle.module.css'
+
+
+// <Button
+        // className={classes.button} />
 
 const Button = (props) => {
     return (
+        
         <Button
-        className={classes.button}
         type={props.type || 'button'}
         onClick={props.onClick}
         >
